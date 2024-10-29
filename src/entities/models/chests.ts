@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from "typeorm";
+import { Dungeon } from "./dungeons";
 
 @Entity()
 export class Chest {
@@ -11,6 +12,6 @@ export class Chest {
     @Column({ length: 255 })
     location!: string;
 
-    @Column("json")
-    items!: object; // Utilisation de JSON pour stocker les objets contenus dans le coffre
+    @ManyToMany(() => Dungeon, (dungeon) => dungeon.chests) // Relation ManyToMany avec Dungeon
+    dungeons!: Dungeon[];
 }

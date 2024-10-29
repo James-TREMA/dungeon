@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from "typeorm";
+import { Dungeon } from "./dungeons";
 
 @Entity()
 export class Item {
@@ -16,4 +17,7 @@ export class Item {
 
     @Column({ length: 255 })
     source!: string;
+
+    @ManyToMany(() => Dungeon, (dungeon) => dungeon.items) // Relation ManyToMany avec Dungeon
+    dungeons!: Dungeon[];
 }
