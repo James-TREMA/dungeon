@@ -1,15 +1,10 @@
-
 ### Get All Locations
 GET http://localhost:3000/api/locations
 Content-Type: application/json
 
-###
-
 ### Get Location by ID
 GET http://localhost:3000/api/locations/1
 Content-Type: application/json
-
-###
 
 ### Create New Location
 POST http://localhost:3000/api/locations
@@ -17,10 +12,8 @@ Content-Type: application/json
 
 {
   "name": "Mystic Riverbank",
-  "region": "Northern Forest"
+  "region": 1  // Assure-toi que l'ID 1 de la région existe dans la base de données
 }
-
-###
 
 ### Update Location
 PUT http://localhost:3000/api/locations/1
@@ -28,13 +21,9 @@ Content-Type: application/json
 
 {
   "name": "Ancient Ruins",
-  "region": "Southern Desert"
+  "region": 2  // Change to a valid region ID for updating
 }
-
-###
 
 ### Delete Location
 DELETE http://localhost:3000/api/locations/1
 Content-Type: application/json
-
-###
