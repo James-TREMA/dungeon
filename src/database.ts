@@ -12,4 +12,3 @@ export const dataSource = new DataSource({
     synchronize: true,
     entities: entities
 })
-
