@@ -3,7 +3,7 @@ GET http://localhost:3000/api/locations
 Content-Type: application/json
 
 ### Get Location by ID
-GET http://localhost:3000/api/locations/1
+GET http://localhost:3000/api/locations/16
 Content-Type: application/json
 
 ### Create New Location
@@ -16,12 +16,12 @@ Content-Type: application/json
 }
 
 ### Update Location
-PUT http://localhost:3000/api/locations/1
+PUT http://localhost:3000/api/locations/16
 Content-Type: application/json
 
 {
   "name": "Ancient Ruins",
-  "region": 2
+  "region": 1
 }
 
 ### Delete Location
