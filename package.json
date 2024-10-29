@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch src --ignore node_modules --ext ts src/index.ts",
+    "start": "nodemon --watch ./src --ext ts --ignore node_modules ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,7 +13,9 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "dungeon": "file:",
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "pg": "^8.13.1",
+    "typeorm": "^0.3.20"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
