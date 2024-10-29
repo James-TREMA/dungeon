@@ -1,0 +1,45 @@
+### Get All Dungeons
+GET http://localhost:3000/api/dungeons
+Content-Type: application/json
+
+###
+
+### Get Dungeon by ID
+GET http://localhost:3000/api/dungeons/1
+Content-Type: application/json
+
+###
+
+### Create New Dungeon
+POST http://localhost:3000/api/dungeons
+Content-Type: application/json
+
+{
+  "name": "Cavern of Mystery",
+  "entrance": "Hidden path behind the waterfall",
+  "level": 5,
+  "location": 1, // ID de la location
+  "chests": [1, 2], // IDs des coffres
+  "items": [3, 4] // IDs des items
+}
+
+###
+
+### Update Dungeon
+PUT http://localhost:3000/api/dungeons/1
+Content-Type: application/json
+
+{
+  "name": "Cavern of Secrets",
+  "entrance": "Mystic gate",
+  "level": 6,
+  "location": 1, // ID de la location
+  "chests": [2], // IDs des coffres
+  "items": [3] // IDs des items
+}
+
+###
+
+### Delete Dungeon
+DELETE http://localhost:3000/api/dungeons/1
+Content-Type: application/json
