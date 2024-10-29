@@ -3,7 +3,7 @@ import { usersRouter } from "./api/users";
 import { itemsRouter } from "./api/items";
 import { chestsRouter } from "./api/chests";
 import { dungeonsRouter } from "./api/dungeons";
-import { locationsRouter } from "./api/locations";
+import { locationsRouter } from "./api/location";
 import { regionsRouter } from "./api/regions";
 
 const router = Router();

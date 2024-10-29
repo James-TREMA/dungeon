@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { dataSource } from "../database";
-import { Location } from "../entities/models/locations";
+import { Location } from "../entities/models/location";
 
 export class LocationsController {
     static async getAll(req: Request, res: Response) {

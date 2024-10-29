@@ -1,7 +1,7 @@
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Chest } from "./chests";
 import { Item } from "./items";
-import { Location } from "./locations";
+import { Location } from "./location";
 import { Region } from "./regions";
 
 @Entity()
