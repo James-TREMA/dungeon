@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
   "name": "Mystic Riverbank",
-  "region": 1  // Assure-toi que l'ID 1 de la région existe dans la base de données
+  "region": 1
 }
 
 ### Update Location
@@ -21,7 +21,7 @@ Content-Type: application/json
 
 {
   "name": "Ancient Ruins",
-  "region": 2  // Change to a valid region ID for updating
+  "region": 2
 }
 
 ### Delete Location
