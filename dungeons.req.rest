@@ -15,14 +15,14 @@ POST http://localhost:3000/api/dungeons
 Content-Type: application/json
 
 {
-  "name": "Cavern of Mystery",
-  "entrance": "Hidden path behind the waterfall",
-  "level": 5,
-  "location": 1, // ID de la location
-  "chests": [1, 2], // IDs des coffres
-  "items": [3, 4] // IDs des items
+    "name": "Cavern of Mystery",
+    "entrance": "Hidden path behind the waterfall",
+    "level": 3,
+    "location": 1, // ID de la localisation
+    "region": 2,   // ID de la région
+    "chests": [1, 2], // IDs des coffres
+    "items": [5, 6]   // IDs des items
 }
-
 ###
 
 ### Update Dungeon
