@@ -1,0 +1,40 @@
+
+### Get All Regions
+GET http://localhost:3000/api/regions
+Content-Type: application/json
+
+###
+
+### Get Region by ID
+GET http://localhost:3000/api/regions/1
+Content-Type: application/json
+
+###
+
+### Create New Region
+POST http://localhost:3000/api/regions
+Content-Type: application/json
+
+{
+  "name": "Northern Mountains",
+  "description": "A cold and harsh region with towering mountains."
+}
+
+###
+
+### Update Region
+PUT http://localhost:3000/api/regions/1
+Content-Type: application/json
+
+{
+  "name": "Southern Plains",
+  "description": "A vast and sunny region with open plains."
+}
+
+###
+
+### Delete Region
+DELETE http://localhost:3000/api/regions/1
+Content-Type: application/json
+
+###

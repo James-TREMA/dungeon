@@ -1,0 +1,44 @@
+
+### Get All Items
+GET http://localhost:3000/api/items
+Content-Type: application/json
+
+###
+
+### Get Item by ID
+GET http://localhost:3000/api/items/1
+Content-Type: application/json
+
+###
+
+### Create New Item
+POST http://localhost:3000/api/items
+Content-Type: application/json
+
+{
+  "name": "Golden Figurine",
+  "type": "Artifact",
+  "rarity": "R4",
+  "source": "Abandoned House Cellar"
+}
+
+###
+
+### Update Item
+PUT http://localhost:3000/api/items/1
+Content-Type: application/json
+
+{
+  "name": "Golden Figurine",
+  "type": "Artifact",
+  "rarity": "R5",
+  "source": "Ancient Ruins"
+}
+
+###
+
+### Delete Item
+DELETE http://localhost:3000/api/items/1
+Content-Type: application/json
+
+###

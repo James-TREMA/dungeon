@@ -1,0 +1,42 @@
+
+### Get All Chests
+GET http://localhost:3000/api/chests
+Content-Type: application/json
+
+###
+
+### Get Chest by ID
+GET http://localhost:3000/api/chests/1
+Content-Type: application/json
+
+###
+
+### Create New Chest
+POST http://localhost:3000/api/chests
+Content-Type: application/json
+
+{
+  "name": "Ancient Chest",
+  "location": "Hidden Cave",
+  "items": ["Iron Sword", "Healing Potion"]
+}
+
+###
+
+### Update Chest
+PUT http://localhost:3000/api/chests/1
+Content-Type: application/json
+
+{
+  "name": "Mystic Chest",
+  "location": "Ancient Temple",
+  "items": ["Mystic Scroll", "Enchanted Dagger"]
+}
+
+###
+
+### Delete Chest
+DELETE http://localhost:3000/api/chests/1
+Content-Type: application/json
+
+###
