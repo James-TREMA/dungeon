@@ -1,8 +1,10 @@
 import { Router } from "express";
+import { RegionsController } from "../../controllers/regionsController";
 
 export const regionsRouter = Router();
 
-regionsRouter.get('/', async (req, res) => {
-    // Logique pour récupérer les régions de la base de données
-    res.send("Liste des régions"); // Remplace par la logique réelle
-});
+regionsRouter.get('/', RegionsController.getAll); // Route pour récupérer toutes les régions
+regionsRouter.get('/:id', RegionsController.getById); // Route pour récupérer une région par ID
+regionsRouter.post('/', RegionsController.create); // Route pour créer une nouvelle région
+regionsRouter.put('/:id', RegionsController.update); // Route pour mettre à jour une région
+regionsRouter.delete('/:id', RegionsController.delete); // Route pour supprimer une région
