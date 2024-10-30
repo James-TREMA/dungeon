@@ -4,6 +4,7 @@ import { Region } from '../../entities/models/regions';
 import { Chest } from '../../entities/models/chests';
 import { Location } from '../../entities/models/location';
 import { Dungeon } from '../../entities/models/dungeons';
+import { User } from '../../entities/models/users';
 
 const seedData = async () => {
   await dataSource.initialize();
@@ -16,7 +17,7 @@ const seedData = async () => {
   
     await queryRunner.connect();
     await queryRunner.startTransaction();
-    
+  
     try {
       console.log("Tronçage de la table 'dungeon_chests_chest'...");
       await queryRunner.query('TRUNCATE TABLE "dungeon_chests_chest" CASCADE');
@@ -39,7 +40,19 @@ const seedData = async () => {
       console.log("Tronçage de la table 'region'...");
       await queryRunner.query('TRUNCATE TABLE "region" CASCADE');
       
-      console.log("Toutes les tables ont été tronquées avec succès. Validation de la transaction...");
+      console.log("Tronçage de la table 'user'...");
+      await queryRunner.query('TRUNCATE TABLE "user" CASCADE');
+  
+      // Réinitialisation des séquences d'auto-incrémentation
+      console.log("Réinitialisation des séquences d'auto-incrémentation...");
+      await queryRunner.query('ALTER SEQUENCE region_id_seq RESTART WITH 1');
+      await queryRunner.query('ALTER SEQUENCE location_id_seq RESTART WITH 1');
+      await queryRunner.query('ALTER SEQUENCE dungeon_id_seq RESTART WITH 1');
+      await queryRunner.query('ALTER SEQUENCE chest_id_seq RESTART WITH 1');
+      await queryRunner.query('ALTER SEQUENCE item_id_seq RESTART WITH 1');
+      await queryRunner.query('ALTER SEQUENCE user_id_seq RESTART WITH 1');
+  
+      console.log("Toutes les tables ont été tronquées et les séquences réinitialisées avec succès. Validation de la transaction...");
       await queryRunner.commitTransaction();
       
       console.log("Transaction de troncature terminée avec succès.");
@@ -51,8 +64,9 @@ const seedData = async () => {
       await queryRunner.release();
       console.log("QueryRunner libéré.");
     }
-  };  
-
+  };
+  
+  
   // Fonction pour insérer les items dans la base de données
   const seedItems = async () => {
     const items = [
@@ -121,18 +135,15 @@ const seedData = async () => {
       }
     }
   
-    // Vérification des régions après insertion
-    for (const region of regions) {
-      const foundRegion = await regionRepository.findOneBy({ id: region.id });
-      if (foundRegion) {
-        console.log(`Vérification : région ${region.name} confirmée en base de données.`);
-      } else {
-        console.error(`Erreur : région ${region.name} non trouvée après insertion.`);
-      }
-    }
-
+    // Afficher toutes les régions après insertion
+    const allRegions = await regionRepository.find();
+    console.log("Régions actuelles en base de données :");
+    allRegions.forEach((region) => {
+      console.log(`- ID: ${region.id}, Nom: ${region.name}`);
+    });
+  
     console.log("Regions seeding completed.");
-  };
+  }
 
   // Fonction pour insérer les coffres dans la base de données
   const seedChests = async () => {
@@ -226,6 +237,42 @@ const seedData = async () => {
     console.log("Dungeons seeding completed.");
   };
 
+  // Fonction pour insérer des utilisateurs dans la base de données
+  const seedUsers = async () => {
+    const userRepository = dataSource.getRepository(User);
+    
+    const users = [
+      { username: 'AliceWanderer', email: 'alice@explorers.com', password: 'Wonderland@123' },
+      { username: 'BobBuilder', email: 'bob@builders.net', password: 'Construct!456' },
+      { username: 'CharlieCipher', email: 'charlie@codecrypt.com', password: 'Encrypt!789' },
+      { username: 'DianaDynamo', email: 'diana@energy.co', password: 'PowerUp@2021' },
+      { username: 'EveEcho', email: 'eve@echoverse.org', password: 'Reflect@Echo99' },
+      { username: 'FrankForge', email: 'frank@metalworks.io', password: 'Iron@Craft44' },
+      { username: 'GraceGravity', email: 'grace@spacemail.com', password: 'Astro@PhysX9' },
+      { username: 'HankHacker', email: 'hank@cybermail.dev', password: 'HackMe!2020' },
+      { username: 'IvyIllusion', email: 'ivy@illusions.org', password: 'Magic&Mirrors55' },
+      { username: 'JackJungle', email: 'jack@wildsafari.com', password: 'LionHeart!30' },
+      { username: 'LunaLight', email: 'luna@moonbase.io', password: 'Stars*Shine88' },
+      { username: 'MaxMatrix', email: 'max@codingmatrix.com', password: 'CodeMaster@2022' },
+      { username: 'NinaNimbus', email: 'nina@skywatchers.com', password: 'Cloud9#Sky' },
+      { username: 'OscarOrbit', email: 'oscar@spacescapes.org', password: 'Galaxy@Spin' },
+      { username: 'PamPixel', email: 'pam@digitalarts.com', password: 'Art4Ever!07' },
+    ];
+  
+    for (const user of users) {
+      const existingUser = await userRepository.findOneBy({ email: user.email });
+      if (!existingUser) {
+        await userRepository.save(user);
+        console.log(`Utilisateur ajouté : ${user.username}`);
+      } else {
+        console.log(`Utilisateur existant : ${user.username}`);
+      }
+    }
+  
+    console.log("Users seeding completed.");
+  };
+
+
   // Exécution de toutes les fonctions de seeding avec suppression préalable
   await clearTables();
   console.log("Tables tronquées, début du seeding...");
@@ -235,6 +282,7 @@ const seedData = async () => {
   await seedChests();  // Insère les coffres
   await seedLocations(); // Insère les localisations (dépend des régions)
   await seedDungeons();  // Insère les donjons (dépend des localisations et des régions)
+  await seedUsers();
 
   console.log("Data seeding completed.");
 };

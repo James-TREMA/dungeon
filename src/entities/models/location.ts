@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn } from "typeorm";
 import { Dungeon } from "./dungeons";
 import { Region } from "./regions";
 
@@ -14,5 +14,9 @@ export class Location {
     dungeons!: Dungeon[];
 
     @ManyToOne(() => Region, (region) => region.locations) // Relation ManyToOne avec Region
+    @JoinColumn({ name: "regionId" }) // Ajout de JoinColumn pour spécifier la clé étrangère
     region!: Region;
+
+    @Column() // Ajout du champ regionId pour stocker la clé étrangère
+    regionId!: number;
 }
