@@ -232,22 +232,22 @@ const seedData = async () => {
   const seedUsers = async () => {
     const userRepository = dataSource.getRepository(User);
     const users = [
-      { username: 'AliceWanderer', email: 'alice@explorers.com', password: 'Wonderland@123' },
-      { username: 'BobBuilder', email: 'bob@builders.net', password: 'Construct!456' },
-      { username: 'CharlieCipher', email: 'charlie@codecrypt.com', password: 'Encrypt!789' },
-      { username: 'DianaDynamo', email: 'diana@energy.co', password: 'PowerUp@2021' },
-      { username: 'EveEcho', email: 'eve@echoverse.org', password: 'Reflect@Echo99' },
-      { username: 'FrankForge', email: 'frank@metalworks.io', password: 'Iron@Craft44' },
-      { username: 'GraceGravity', email: 'grace@spacemail.com', password: 'Astro@PhysX9' },
-      { username: 'HankHacker', email: 'hank@cybermail.dev', password: 'HackMe!2020' },
-      { username: 'IvyIllusion', email: 'ivy@illusions.org', password: 'Magic&Mirrors55' },
-      { username: 'JackJungle', email: 'jack@wildsafari.com', password: 'LionHeart!30' },
-      { username: 'LunaLight', email: 'luna@moonbase.io', password: 'Stars*Shine88' },
-      { username: 'MaxMatrix', email: 'max@codingmatrix.com', password: 'CodeMaster@2022' },
-      { username: 'NinaNimbus', email: 'nina@skywatchers.com', password: 'Cloud9#Sky' },
-      { username: 'OscarOrbit', email: 'oscar@spacescapes.org', password: 'Galaxy@Spin' },
-      { username: 'PamPixel', email: 'pam@digitalarts.com', password: 'Art4Ever!07' },
-    ];
+      { id: 1, username: 'AliceWanderer', email: 'alice@explorers.com', password: 'Wonderland@123', rank: 12, gold: 350, inventory: [1, 7, 12], achievements: ['Explorer', 'PuzzleSolver'], currentLocationId: 4, lastDungeonId: 2, health: 95, energy: 80, skills: ['Stealth', 'Agility'], friends: [2, 5, 10], role: 'scout' },
+      { id: 2, username: 'BobBuilder', email: 'bob@builders.net', password: 'Construct!456', rank: 9, gold: 250, inventory: [3, 8, 15], achievements: ['Craftsman', 'Fortifier'], currentLocationId: 3, lastDungeonId: 4, health: 100, energy: 60, skills: ['Strength', 'Engineering'], friends: [1, 3, 6], role: 'engineer' },
+      { id: 3, username: 'CharlieCipher', email: 'charlie@codecrypt.com', password: 'Encrypt!789', rank: 15, gold: 500, inventory: [5, 11, 19], achievements: ['Codebreaker', 'Strategist'], currentLocationId: 2, lastDungeonId: 3, health: 85, energy: 70, skills: ['Hacking', 'Logic'], friends: [2, 4, 7], role: 'hacker' },
+      { id: 4, username: 'DianaDynamo', email: 'diana@energy.co', password: 'PowerUp@2021', rank: 10, gold: 300, inventory: [6, 13, 18], achievements: ['PowerSurge', 'EnergyMaster'], currentLocationId: 1, lastDungeonId: 5, health: 90, energy: 95, skills: ['Electromagnetics', 'Energy Control'], friends: [3, 5, 8], role: 'technician' },
+      { id: 5, username: 'EveEcho', email: 'eve@echoverse.org', password: 'Reflect@Echo99', rank: 8, gold: 200, inventory: [2, 9, 14], achievements: ['Sonic Explorer', 'Echo Master'], currentLocationId: 6, lastDungeonId: 1, health: 88, energy: 75, skills: ['Acoustics', 'Stealth'], friends: [1, 4, 6], role: 'scout' },
+      { id: 6, username: 'FrankForge', email: 'frank@metalworks.io', password: 'Iron@Craft44', rank: 11, gold: 400, inventory: [10, 16, 20], achievements: ['IronWorker', 'Smithing Pro'], currentLocationId: 7, lastDungeonId: 4, health: 100, energy: 50, skills: ['Smithing', 'Strength'], friends: [2, 5, 9], role: 'warrior' },
+      { id: 7, username: 'GraceGravity', email: 'grace@spacemail.com', password: 'Astro@PhysX9', rank: 14, gold: 550, inventory: [12, 18, 21], achievements: ['StarGazer', 'PhysicsMaster'], currentLocationId: 8, lastDungeonId: 3, health: 92, energy: 90, skills: ['Astrophysics', 'Gravity Control'], friends: [3, 6, 10], role: 'scientist' },
+      { id: 8, username: 'HankHacker', email: 'hank@cybermail.dev', password: 'HackMe!2020', rank: 13, gold: 480, inventory: [1, 11, 17], achievements: ['DataMiner', 'Infiltrator'], currentLocationId: 2, lastDungeonId: 6, health: 80, energy: 85, skills: ['Coding', 'Hacking'], friends: [1, 4, 7], role: 'hacker' },
+      { id: 9, username: 'IvyIllusion', email: 'ivy@illusions.org', password: 'Magic&Mirrors55', rank: 12, gold: 300, inventory: [14, 20, 23], achievements: ['Illusionist', 'MirrorMaster'], currentLocationId: 5, lastDungeonId: 2, health: 87, energy: 78, skills: ['Illusion', 'Charm'], friends: [2, 6, 10], role: 'mage' },
+      { id: 10, username: 'JackJungle', email: 'jack@wildsafari.com', password: 'LionHeart!30', rank: 9, gold: 260, inventory: [3, 8, 22], achievements: ['BeastMaster', 'Survivor'], currentLocationId: 9, lastDungeonId: 5, health: 93, energy: 60, skills: ['Animal Taming', 'Survival'], friends: [5, 7, 9], role: 'ranger' },
+      { id: 11, username: 'LunaLight', email: 'luna@moonbase.io', password: 'Stars*Shine88', rank: 16, gold: 700, inventory: [7, 13, 25], achievements: ['AstralWalker', 'LightWeaver'], currentLocationId: 10, lastDungeonId: 7, health: 96, energy: 100, skills: ['Light Magic', 'Astrology'], friends: [8, 10, 12], role: 'mage' },
+      { id: 12, username: 'MaxMatrix', email: 'max@codingmatrix.com', password: 'CodeMaster@2022', rank: 14, gold: 500, inventory: [9, 18, 24], achievements: ['MatrixMaster', 'PuzzleSolver'], currentLocationId: 4, lastDungeonId: 8, health: 85, energy: 90, skills: ['Coding', 'Puzzle Solving'], friends: [7, 11, 13], role: 'programmer' },
+      { id: 13, username: 'NinaNimbus', email: 'nina@skywatchers.com', password: 'Cloud9#Sky', rank: 11, gold: 320, inventory: [2, 15, 19], achievements: ['CloudShaper', 'StormChaser'], currentLocationId: 6, lastDungeonId: 2, health: 82, energy: 76, skills: ['Weather Control', 'Flight'], friends: [5, 12, 14], role: 'elementalist' },
+      { id: 14, username: 'OscarOrbit', email: 'oscar@spacescapes.org', password: 'Galaxy@Spin', rank: 10, gold: 300, inventory: [6, 17, 21], achievements: ['GalaxyWatcher', 'OrbitMaster'], currentLocationId: 3, lastDungeonId: 3, health: 88, energy: 80, skills: ['Astrology', 'Celestial Mapping'], friends: [1, 11, 15], role: 'astronomer' },
+      { id: 15, username: 'PamPixel', email: 'pam@digitalarts.com', password: 'Art4Ever!07', rank: 8, gold: 250, inventory: [4, 16, 22], achievements: ['PixelMaster', 'CreativeSoul'], currentLocationId: 7, lastDungeonId: 5, health: 90, energy: 85, skills: ['Art', 'Illusion'], friends: [6, 10, 13], role: 'artist' },
+    ];    
 
     for (const user of users) {
       const existingUser = await userRepository.findOneBy({ email: user.email });
