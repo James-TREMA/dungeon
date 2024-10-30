@@ -4,20 +4,17 @@ import { User } from './users';
 @Entity('achievement')
 export class Achievement {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number; // Utilisation de "!" pour indiquer que cette propriété sera initialisée automatiquement
 
   @Column({ unique: true })
-  title: string;
+  title!: string;
 
   @Column('text')
-  description: string;
+  description!: string;
 
-  @Column({ type: 'int', default: 1 })
-  difficultyLevel: number;
+  @Column({ type: 'int', default: 0 })
+  points: number = 0;
 
-  @Column({ type: 'int', default: 100 })
-  rewardPoints: number;
-
-  @ManyToMany(() => User, (user) => user.achievements)
-  users: User[];
+  @ManyToMany(() => User, (user) => user.achievements, { cascade: true })
+  users: User[] = [];
 }
