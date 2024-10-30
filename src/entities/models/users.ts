@@ -63,9 +63,9 @@ export class User {
   energy: number = 100;
 
   // Compétences de l'utilisateur (tableau de chaînes de caractères)
-  @Column("simple-array")
-  skills: string[] = [];
-
+  @Column("simple-array", { default: [] })
+  skills!: string[];  
+  
   // Rôle de l'utilisateur dans le jeu (défaut : 'adventurer')
   @Column({ type: 'varchar', length: 50, default: 'adventurer' })
   role: string = 'adventurer';
