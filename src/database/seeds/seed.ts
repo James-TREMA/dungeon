@@ -284,7 +284,6 @@ const seedData = async () => {
   
     console.log("Utilisateurs ajoutés.");
   };
-  
 
   await clearTables();
   console.log("Tables tronquées, début du seeding...");
