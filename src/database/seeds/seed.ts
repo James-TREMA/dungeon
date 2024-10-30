@@ -237,6 +237,11 @@ const seedData = async () => {
     const userRepository = dataSource.getRepository(User);
     const itemRepository = dataSource.getRepository(Item);
     const achievementRepository = dataSource.getRepository(Achievement);
+    const dungeonRepository = dataSource.getRepository(Dungeon);
+  
+    // Charger et trier les donjons par niveau de difficulté
+    const dungeons = await dungeonRepository.find();
+    const sortedDungeons = dungeons.sort((a, b) => a.level - b.level);
   
     const users = [
       { id: 1, username: 'AliceWanderer', email: 'alice@explorers.com', password: 'Wonderland@123', rank: 12, gold: 350, inventory: [1, 7, 12], achievements: ['Explorer', 'PuzzleSolver'], currentLocationId: 4, lastDungeonId: 2, health: 95, energy: 80, skills: ['Stealth', 'Agility'], friends: [2, 5, 10], role: 'scout' },
@@ -254,37 +259,39 @@ const seedData = async () => {
       { id: 13, username: 'NinaNimbus', email: 'nina@skywatchers.com', password: 'Cloud9#Sky', rank: 11, gold: 320, inventory: [2, 15, 19], achievements: ['CloudShaper', 'StormChaser'], currentLocationId: 6, lastDungeonId: 2, health: 82, energy: 76, skills: ['Weather Control', 'Flight'], friends: [5, 12, 14], role: 'elementalist' },
       { id: 14, username: 'OscarOrbit', email: 'oscar@spacescapes.org', password: 'Galaxy@Spin', rank: 10, gold: 300, inventory: [6, 17, 21], achievements: ['GalaxyWatcher', 'OrbitMaster'], currentLocationId: 3, lastDungeonId: 3, health: 88, energy: 80, skills: ['Astrology', 'Celestial Mapping'], friends: [1, 11, 15], role: 'astronomer' },
       { id: 15, username: 'PamPixel', email: 'pam@digitalarts.com', password: 'Art4Ever!07', rank: 8, gold: 250, inventory: [4, 16, 22], achievements: ['PixelMaster', 'CreativeSoul'], currentLocationId: 7, lastDungeonId: 5, health: 90, energy: 85, skills: ['Art', 'Illusion'], friends: [6, 10, 13], role: 'artist' },
-    ];    
+    ];  
   
     for (const user of users) {
       const existingUser = await userRepository.findOneBy({ email: user.email });
       if (!existingUser) {
-        // Charger les objets d'inventaire
+        // Charger les objets d'inventaire et les amis
         const inventory = await itemRepository.findByIds(user.inventory);
-        
-        // Charger les amis en tant qu'objets User
         const friends = await userRepository.findByIds(user.friends);
   
-        // Charger les achievements en utilisant l'opérateur In
+        // Charger les achievements
         const achievements = await achievementRepository.find({
           where: { title: In(user.achievements) },
         });
   
-        // Créer le nouvel utilisateur avec les entités associées
+        // Assigner un donjon en fonction du rank
+        const assignedDungeon = sortedDungeons.find(dungeon => dungeon.level <= user.rank) || sortedDungeons[0];
+  
+        // Créer le nouvel utilisateur avec le donjon assigné
         const newUser = userRepository.create({
           ...user,
           inventory,
           friends,
           achievements,
+          lastDungeon: assignedDungeon,  // Attribue le donjon en fonction du rank
         });
   
         await userRepository.save(newUser);
       }
     }
   
-    console.log("Utilisateurs ajoutés.");
+    console.log("Utilisateurs ajoutés avec des donjons adaptés au rank.");
   };
-
+  
   await clearTables();
   console.log("Tables tronquées, début du seeding...");
   
