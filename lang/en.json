@@ -1,11 +1,15 @@
 {
     "connexion_query_runner": "Connecting to QueryRunner to begin table truncation...",
     "tables_truncated_reset": "Tables truncated and sequences reset.",
+    "truncate_error": "Error during table truncation.",
     "items_added": "Items added.",
     "regions_added": "Regions added.",
     "chests_added": "Chests added.",
+    "locations_seed_start": "Starting location seeding...",
     "locations_added": "Locations added.",
+    "dungeons_seed_start": "Starting dungeon seeding...",
     "dungeons_added": "Dungeons added.",
-    "users_added": "Users added with dungeons and locations adjusted by rank."
+    "users_added": "Users added with dungeons and locations adjusted by rank.",
+    "seeding_start": "Starting data seeding...",
+    "seeding_complete": "Data seeding complete."
 }
-  

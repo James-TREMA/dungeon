@@ -42,7 +42,7 @@ const seedData = async () => {
       console.log(getTranslation("tables_truncated_reset"));
       await queryRunner.commitTransaction();
     } catch (error) {
-      console.error("Erreur lors de la troncature des tables.");
+      console.error(getTranslation("truncate_error")); // Erreur lors de la troncature des tables
       await queryRunner.rollbackTransaction();
       throw error;
     } finally {
@@ -308,8 +308,8 @@ const seedData = async () => {
   };
   
   await clearTables();
-  console.log("Tables tronquées, début du seeding...");
-  
+  console.log(getTranslation("seeding_start")); // Début du seeding...
+    
   await seedItems();
   await seedRegions();
   await seedChests();
@@ -317,7 +317,7 @@ const seedData = async () => {
   await seedDungeons();
   await seedUsers();
 
-  console.log("Data seeding terminé.");
+  console.log(getTranslation("seeding_complete")); // Data seeding terminé.
 };
 
 export const runSeed = async () => {

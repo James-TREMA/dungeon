@@ -1,11 +1,15 @@
 {
     "connexion_query_runner": "Connexion au QueryRunner pour commencer la troncature des tables...",
     "tables_truncated_reset": "Tables tronquées et séquences réinitialisées.",
+    "truncate_error": "Erreur lors de la troncature des tables.",
     "items_added": "Items ajoutés.",
     "regions_added": "Régions ajoutées.",
     "chests_added": "Coffres ajoutés.",
+    "locations_seed_start": "Début du seeding des localisations...",
     "locations_added": "Localisations ajoutées.",
+    "dungeons_seed_start": "Début du seeding des donjons...",
     "dungeons_added": "Donjons ajoutés.",
-    "users_added": "Utilisateurs ajoutés avec des donjons et localisations adaptés au rank."
+    "users_added": "Utilisateurs ajoutés avec des donjons et localisations adaptés au rank.",
+    "seeding_start": "Début du seeding...",
+    "seeding_complete": "Data seeding terminé."
 }
-  
