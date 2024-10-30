@@ -275,8 +275,8 @@ const seedData = async () => {
         });
   
         // Assigner une localisation par défaut si la localisation spécifiée est absente
-        let currentLocation: Location | undefined = await locationRepository.findOneBy({ id: user.currentLocationId }) || undefined;
-  
+        let currentLocation: Location | undefined = await locationRepository.findOneBy({ id: user.currentLocationId }) || await locationRepository.findOne({ order: { id: 'ASC' } }); // Utilise la première localisation comme fallback
+
         // Assigner un donjon en fonction du rank
         const assignedDungeon = sortedDungeons.reverse().find(dungeon => dungeon.level <= user.rank) || sortedDungeons[0];
   
@@ -286,7 +286,7 @@ const seedData = async () => {
           inventory: inventory as any, // Évite le conflit de types avec `inventory`
           friends,
           achievements,
-          currentLocation: currentLocation ?? undefined,  // Définit `currentLocation` comme `undefined` si elle est absente
+          currentLocation,
           lastDungeon: assignedDungeon,  // Attribue le donjon en fonction du rank
         });
   
