@@ -2,6 +2,7 @@ import { dataSource } from '../ConfigDB';
 import { Item } from '../../entities/models/items';
 import { Region } from '../../entities/models/regions';
 import { Chest } from '../../entities/models/chests';
+import { Location } from '../../entities/models/location';
 
 // Fonction pour insérer les items dans la base de données
 const seedItems = async () => {
@@ -99,6 +100,33 @@ const seedChests = async () => {
   console.log("Chests seeding completed.");
 };
 
+// Fonction pour insérer les localisations dans la base de données
+const seedLocations = async () => {
+  const locations = [
+    { id: 1, name: 'Ancient Ruins', region: 1 },
+    { id: 2, name: 'Small Cave Tomb', region: 2 },
+    { id: 3, name: 'Abandoned House Cellar', region: 3 },
+    { id: 4, name: 'Training Chapel', region: 4 },
+    { id: 5, name: 'Hidell Catacombe I Depth', region: 5 },
+    { id: 6, name: 'Hidell Catacombe II Depth', region: 6 },
+    { id: 7, name: 'Hunter\'s Secret Passage', region: 7 },
+    { id: 8, name: 'The Ark Lower Level - Storage', region: 8 },
+    { id: 9, name: 'The Ark Lower Level - Treasure', region: 9 },
+    { id: 10, name: 'One Way Passage', region: 10 }
+    // Ajoute d'autres localisations selon l'image
+  ];
+
+  const locationRepository = dataSource.getRepository(Location);
+  for (const location of locations) {
+    const existingLocation = await locationRepository.findOneBy({ id: location.id });
+    if (!existingLocation) {
+      await locationRepository.save(location);
+    }
+  }
+
+  console.log("Locations seeding completed.");
+};
+
 // Fonction principale pour exécuter le seeding en fonction de SEED_DATA
 export const runSeed = async () => {
   if (process.env.SEED_DATA === 'true') {
@@ -106,6 +134,7 @@ export const runSeed = async () => {
     await seedItems();
     await seedRegions();
     await seedChests();
+    await seedLocations();
     console.log("Data seeding completed.");
   }
 };
