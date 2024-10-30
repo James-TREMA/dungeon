@@ -275,10 +275,13 @@ const seedData = async () => {
         });
   
         // Assigner une localisation par défaut si la localisation spécifiée est absente
-        let currentLocation = (await locationRepository.findOneBy({ id: user.currentLocationId })) || undefined;
+        let currentLocation: Location | undefined = undefined;
+        if (user.currentLocationId) {
+          currentLocation = await locationRepository.findOneBy({ id: user.currentLocationId }) || undefined;
+        }
         if (!currentLocation) {
           currentLocation = await locationRepository.findOne({ order: { id: 'ASC' } }) || undefined;
-        }
+        }        
 
         // Assigner un donjon en fonction du rank
         const assignedDungeon = sortedDungeons.reverse().find(dungeon => dungeon.level <= user.rank) || sortedDungeons[0];
