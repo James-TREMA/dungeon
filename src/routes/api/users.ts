@@ -1,19 +1,31 @@
-import { Router } from "express";
-import { UsersController } from "../../controllers/usersController";
+import { Router } from 'express';
+import { UsersController } from '../../controllers/usersController';
 
-export const usersRouter = Router();
+const router = Router();
 
-// Route pour récupérer tous les utilisateurs
-usersRouter.get('/', UsersController.getAll);
+// Récupérer tous les utilisateurs
+router.get('/', UsersController.getAll);
 
-// Route pour récupérer un utilisateur par ID
-usersRouter.get('/:id', UsersController.getById);
+// Récupérer un utilisateur par ID
+router.get('/:id', UsersController.getById);
 
-// Route pour créer un nouvel utilisateur
-usersRouter.post('/', UsersController.create);
+// Créer un nouvel utilisateur
+router.post('/', UsersController.create);
 
-// Route pour mettre à jour un utilisateur existant
-usersRouter.put('/:id', UsersController.update);
+// Mettre à jour les attributs spécifiques d'un utilisateur (rank, gold, health, energy, role)
+router.put('/:id/attributes', UsersController.updateUserAttributes);
 
-// Route pour supprimer un utilisateur
-usersRouter.delete('/:id', UsersController.delete);
+// Ajouter un item dans l'inventaire d'un utilisateur
+router.post('/:id/inventory', UsersController.addItemToInventory);
+
+// Ajouter un ami à la liste d'amis de l'utilisateur
+router.post('/:id/friends', UsersController.addFriend);
+
+// Ajouter un achievement à l'utilisateur
+router.post('/:id/achievements', UsersController.addAchievement);
+
+// Mettre à jour tous les attributs d'un utilisateur, y compris inventaire, amis, et succès
+router.put('/:id', UsersController.updateUser);
+
+// Supprimer un utilisateur par ID
+router.delete('/:id', UsersController.delete);
