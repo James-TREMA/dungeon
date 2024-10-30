@@ -10,9 +10,11 @@ app.use(express.json());
 app.use('/api', router);
 
 dataSource.initialize()
-    runSeed()
     .then(() => {
         console.log("La source de données a été initialisée !");
+        return runSeed();  // Exécuter le seed après l'initialisation de la source de données
+    })
+    .then(() => {
         app.listen(process.env.PORT, () => {
             console.log(`Serveur fonctionnant sur le port ${process.env.PORT}`);
         });
