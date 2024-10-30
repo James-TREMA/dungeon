@@ -1,10 +1,10 @@
-import { Router } from "express";
+import { Router, Request, Response, NextFunction } from "express";
 import { UsersController } from "../../controllers/usersController";
 
 export const usersRouter = Router();
 
 // Wrapper pour gérer les erreurs asynchrones
-const asyncHandler = (fn: Function) => (req: Request, res: Response, next: Function) => {
+const asyncHandler = (fn: Function) => (req: Request, res: Response, next: NextFunction) => {
   Promise.resolve(fn(req, res, next)).catch(next);
 };
 
