@@ -280,7 +280,10 @@ const seedData = async () => {
           currentLocation = await locationRepository.findOneBy({ id: user.currentLocationId }) || undefined;
         }
         if (!currentLocation) {
-          currentLocation = await locationRepository.findOne({ order: { id: 'ASC' } }) || undefined;
+          currentLocation = await locationRepository.findOne({
+            where: {},  // Utilise une condition vide pour indiquer que vous voulez obtenir le premier élément
+            order: { id: 'ASC' }
+          }) || undefined;          
         }        
 
         // Assigner un donjon en fonction du rank
