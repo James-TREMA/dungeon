@@ -231,6 +231,7 @@ const seedData = async () => {
   // Seeding des utilisateurs
   const seedUsers = async () => {
     const userRepository = dataSource.getRepository(User);
+    const itemRepository = dataSource.getRepository(Item);
     const users = [
       { id: 1, username: 'AliceWanderer', email: 'alice@explorers.com', password: 'Wonderland@123', rank: 12, gold: 350, inventory: [1, 7, 12], achievements: ['Explorer', 'PuzzleSolver'], currentLocationId: 4, lastDungeonId: 2, health: 95, energy: 80, skills: ['Stealth', 'Agility'], friends: [2, 5, 10], role: 'scout' },
       { id: 2, username: 'BobBuilder', email: 'bob@builders.net', password: 'Construct!456', rank: 9, gold: 250, inventory: [3, 8, 15], achievements: ['Craftsman', 'Fortifier'], currentLocationId: 3, lastDungeonId: 4, health: 100, energy: 60, skills: ['Strength', 'Engineering'], friends: [1, 3, 6], role: 'engineer' },
@@ -251,7 +252,22 @@ const seedData = async () => {
 
     for (const user of users) {
       const existingUser = await userRepository.findOneBy({ email: user.email });
-      if (!existingUser) await userRepository.save(user);
+      if (!existingUser) {
+        // Charger les objets d'inventaire
+        const inventory = await itemRepository.findByIds(user.inventory);
+        
+        // Charger les amis en tant qu'objets User
+        const friends = await userRepository.findByIds(user.friends);
+  
+        // Créer le nouvel utilisateur avec les entités associées
+        const newUser = userRepository.create({
+          ...user,
+          inventory,
+          friends,
+        });
+  
+        await userRepository.save(newUser);
+      }
     }
     console.log("Utilisateurs ajoutés.");
   };
