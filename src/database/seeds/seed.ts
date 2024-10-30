@@ -182,6 +182,8 @@ const seedData = async () => {
 };
 
 // Exécution principale contrôlée par la variable d'environnement SEED_DATA
-if (process.env.SEED_DATA === 'true') {
-  seedData().catch(error => console.error("Error seeding database:", error));
-}
+export const runSeed = async () => {
+  if (process.env.SEED_DATA === 'true') {
+    seedData().catch(error => console.error("Error seeding database:", error));
+  }
+};
