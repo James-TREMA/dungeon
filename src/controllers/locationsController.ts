@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { dataSource } from "../database";
+import { dataSource } from "../database/ConfigDB";
 import { Location } from "../entities/models/location";
 
 export class LocationsController {

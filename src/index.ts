@@ -1,5 +1,6 @@
 import "reflect-metadata";
-import { dataSource } from './database';
+import { dataSource } from './database/ConfigDB';
+import { runSeed } from './database/seeds/seed';
 import { router } from './routes';
 import express from 'express';
 import 'dotenv/config';
@@ -9,6 +10,7 @@ app.use(express.json());
 app.use('/api', router);
 
 dataSource.initialize()
+    runSeed()
     .then(() => {
         console.log("La source de données a été initialisée !");
         app.listen(process.env.PORT, () => {

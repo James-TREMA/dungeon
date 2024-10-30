@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { dataSource } from "../database";
+import { dataSource } from "../database/ConfigDB";
 import { Dungeon } from "../entities/models/dungeons";
 
 export class DungeonsController {

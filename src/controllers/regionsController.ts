@@ -1,6 +1,6 @@
 // src/controllers/regionsController.ts
 import { Request, Response } from "express";
-import { dataSource } from "../database";
+import { dataSource } from "../database/ConfigDB";
 import { Region } from "../entities/models/regions";
 
 export class RegionsController {
