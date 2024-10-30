@@ -1,6 +1,9 @@
 import { dataSource } from '../ConfigDB';
 import { Item } from '../../entities/models/items';
+import { Region } from '../../entities/models/regions';
+import { Chest } from '../../entities/models/chests';
 
+// Fonction pour insérer les items dans la base de données
 const seedItems = async () => {
   const items = [
     { id: 1, name: 'Golden Figurine', type: 'Artifact', rarity: 'R4', source: 'Abandoned House Cellar' },
@@ -33,11 +36,9 @@ const seedItems = async () => {
     { id: 28, name: 'Luminous Core', type: 'Artifact', rarity: 'R4', source: 'The Ark Lv.18' },
     { id: 29, name: 'Mystic Dust', type: 'Material', rarity: 'R1', source: 'Small Cave Tomb Lv.10' },
     { id: 30, name: 'Goblin Ear', type: 'Material', rarity: 'R2', source: 'Training Chapel Lv.3' }
-  ];  
+  ];
 
-  await dataSource.initialize();
   const itemRepository = dataSource.getRepository(Item);
-
   for (const item of items) {
     const existingItem = await itemRepository.findOneBy({ id: item.id });
     if (!existingItem) {
@@ -45,11 +46,66 @@ const seedItems = async () => {
     }
   }
 
-  console.log("Data seeding completed.");
+  console.log("Items seeding completed.");
 };
 
+// Fonction pour insérer les régions dans la base de données
+const seedRegions = async () => {
+  const regions = [
+    { id: 1, name: 'Northern Mountains', description: 'A cold and harsh region with towering mountains.' },
+    { id: 2, name: 'Abandoned House Cellar', description: 'A mysterious place filled with hidden dangers.' },
+    { id: 3, name: 'Hidell Catacombe I Depth', description: 'The depths of Hidell Catacombs, echoing with whispers.' },
+    { id: 4, name: 'Hidell Catacombe II Depth', description: 'A deeper part of the Hidell Catacombs.' },
+    { id: 5, name: 'Hunter\'s Secret Passage', description: 'An old passage used by hunters, rich in rare finds.' },
+    { id: 6, name: 'The Ark\'s Lower Level - Treasure', description: 'A treasure-filled level of the Ark, guarded by ancient magic.' },
+    { id: 7, name: 'The Ark\'s Lower Level - Storage', description: 'Storage level in The Ark with ancient artifacts.' },
+    { id: 8, name: 'Small Cave Tomb', description: 'A small tomb cave, often overlooked but rich in history.' },
+    { id: 9, name: 'Training Chapel', description: 'A chapel used for training, containing basic resources.' }
+  ];
+
+  const regionRepository = dataSource.getRepository(Region);
+  for (const region of regions) {
+    const existingRegion = await regionRepository.findOneBy({ id: region.id });
+    if (!existingRegion) {
+      await regionRepository.save(region);
+    }
+  }
+
+  console.log("Regions seeding completed.");
+};
+
+// Fonction pour insérer les coffres dans la base de données
+const seedChests = async () => {
+  const chests = [
+    { id: 1, name: 'Gold Chest', location: 'Abandoned House Cellar Lv.4' },
+    { id: 2, name: 'Silver Chest', location: 'Hidell Catacombe I Depth Lv.10' },
+    { id: 3, name: 'Mysterious Chest', location: 'The Ark\'s Lower Level - Treasure Lv.28' },
+    { id: 4, name: 'Locked Chest', location: 'Hunter\'s Secret Passage Lv.15' },
+    { id: 5, name: 'Common Chest', location: 'Training Chapel Lv.3' },
+    { id: 6, name: 'Locked Chest (4)', location: 'Hidell Catacombe II Inner Part Depth Lv.20' },
+    { id: 7, name: 'Crystal Chest', location: 'Hidell Catacombe II Depth Lv.16' },
+    { id: 8, name: 'Final Chest', location: 'The Ark\'s Lower Level - Final Chest Lv.30' }
+    // Ajoute d'autres coffres selon la liste de la photo
+  ];
+
+  const chestRepository = dataSource.getRepository(Chest);
+  for (const chest of chests) {
+    const existingChest = await chestRepository.findOneBy({ id: chest.id });
+    if (!existingChest) {
+      await chestRepository.save(chest);
+    }
+  }
+
+  console.log("Chests seeding completed.");
+};
+
+// Fonction principale pour exécuter le seeding en fonction de SEED_DATA
 export const runSeed = async () => {
   if (process.env.SEED_DATA === 'true') {
+    await dataSource.initialize();
     await seedItems();
+    await seedRegions();
+    await seedChests();
+    console.log("Data seeding completed.");
   }
 };
