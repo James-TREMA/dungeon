@@ -15,6 +15,6 @@ export class Achievement {
   @Column({ type: 'int', default: 0 })
   points: number = 0;
 
-  @ManyToMany(() => User, (user) => user.achievements, { cascade: true })
-  users!: User[]; // Ajout de `!` pour indiquer qu'elle sera assignée par TypeORM  
+  @ManyToMany(() => User, (user) => user.achievements)
+  users!: User[];
 }
