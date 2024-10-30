@@ -10,20 +10,48 @@ const seedData = async () => {
 
   // Fonction pour vider les tables
   const clearTables = async () => {
-    const itemRepository = dataSource.getRepository(Item);
-    const regionRepository = dataSource.getRepository(Region);
-    const chestRepository = dataSource.getRepository(Chest);
-    const locationRepository = dataSource.getRepository(Location);
-    const dungeonRepository = dataSource.getRepository(Dungeon);
-
-    await dungeonRepository.clear();
-    await locationRepository.clear();
-    await chestRepository.clear();
-    await regionRepository.clear();
-    await itemRepository.clear();
-
-    console.log("All tables cleared.");
-  };
+    const queryRunner = dataSource.createQueryRunner();
+  
+    console.log("Connexion au QueryRunner pour commencer la troncature des tables...");
+  
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+    
+    try {
+      console.log("Tronçage de la table 'dungeon_chests_chest'...");
+      await queryRunner.query('TRUNCATE TABLE "dungeon_chests_chest" CASCADE');
+      
+      console.log("Tronçage de la table 'dungeon_items_item'...");
+      await queryRunner.query('TRUNCATE TABLE "dungeon_items_item" CASCADE');
+      
+      console.log("Tronçage de la table 'dungeon'...");
+      await queryRunner.query('TRUNCATE TABLE "dungeon" CASCADE');
+      
+      console.log("Tronçage de la table 'chest'...");
+      await queryRunner.query('TRUNCATE TABLE "chest" CASCADE');
+      
+      console.log("Tronçage de la table 'item'...");
+      await queryRunner.query('TRUNCATE TABLE "item" CASCADE');
+      
+      console.log("Tronçage de la table 'location'...");
+      await queryRunner.query('TRUNCATE TABLE "location" CASCADE');
+      
+      console.log("Tronçage de la table 'region'...");
+      await queryRunner.query('TRUNCATE TABLE "region" CASCADE');
+      
+      console.log("Toutes les tables ont été tronquées avec succès. Validation de la transaction...");
+      await queryRunner.commitTransaction();
+      
+      console.log("Transaction de troncature terminée avec succès.");
+    } catch (error) {
+      console.error("Erreur lors de la troncature des tables. Annulation de la transaction...");
+      await queryRunner.rollbackTransaction();
+      throw error;
+    } finally {
+      await queryRunner.release();
+      console.log("QueryRunner libéré.");
+    }
+  };  
 
   // Fonction pour insérer les items dans la base de données
   const seedItems = async () => {
