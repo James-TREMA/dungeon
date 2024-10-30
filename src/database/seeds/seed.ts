@@ -238,6 +238,7 @@ const seedData = async () => {
     const itemRepository = dataSource.getRepository(Item);
     const achievementRepository = dataSource.getRepository(Achievement);
     const dungeonRepository = dataSource.getRepository(Dungeon);
+    const locationRepository = dataSource.getRepository(Location);
   
     // Charger et trier les donjons par niveau de difficulté
     const dungeons = await dungeonRepository.find();
@@ -267,28 +268,35 @@ const seedData = async () => {
         // Charger les objets d'inventaire et les amis
         const inventory = await itemRepository.findByIds(user.inventory);
         const friends = await userRepository.findByIds(user.friends);
-  
+        
         // Charger les achievements
         const achievements = await achievementRepository.find({
           where: { title: In(user.achievements) },
         });
   
+        // Assigner une localisation en fonction de currentLocationId
+        let currentLocation = await locationRepository.findOneBy({ id: user.currentLocationId });
+        if (!currentLocation) {
+          // Si la localisation par défaut est inexistante, attribuer une localisation générique
+          currentLocation = await locationRepository.findOneBy({ id: 1 });
+        }
+  
         // Assigner un donjon en fonction du rank
         const assignedDungeon = sortedDungeons.find(dungeon => dungeon.level <= user.rank) || sortedDungeons[0];
   
-        // Créer le nouvel utilisateur avec le donjon assigné
+        // Créer le nouvel utilisateur avec les localisations et donjons assignés
         const newUser = userRepository.create({
           ...user,
           inventory,
           friends,
           achievements,
+          currentLocation,
           lastDungeon: assignedDungeon,  // Attribue le donjon en fonction du rank
         });
   
         await userRepository.save(newUser);
       }
-    }
-  
+    }  
     console.log("Utilisateurs ajoutés avec des donjons adaptés au rank.");
   };
   
