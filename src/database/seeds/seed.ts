@@ -18,7 +18,7 @@ const seedData = async () => {
   // Supprime et réinitialise les tables avant le seeding
   const clearTables = async () => {
     const queryRunner = dataSource.createQueryRunner();
-    console.log("Connexion au QueryRunner pour commencer la troncature des tables...");
+    console.log(getTranslation("connexion_query_runner"));
 
     await queryRunner.connect();
     await queryRunner.startTransaction();
@@ -39,7 +39,7 @@ const seedData = async () => {
       await queryRunner.query('ALTER SEQUENCE item_id_seq RESTART WITH 1');
       await queryRunner.query('ALTER SEQUENCE user_id_seq RESTART WITH 1');
 
-      console.log("Tables tronquées et séquences réinitialisées.");
+      console.log(getTranslation("tables_truncated_reset"));
       await queryRunner.commitTransaction();
     } catch (error) {
       console.error("Erreur lors de la troncature des tables.");
@@ -125,7 +125,7 @@ const seedData = async () => {
     for (const item of items) {
       await itemRepository.save(item);
     }
-    console.log("Items ajoutés.");
+    console.log(getTranslation("items_added")); // "Items ajoutés."
   };
 
   // Seeding des régions
@@ -147,7 +147,7 @@ const seedData = async () => {
       const existingRegion = await regionRepository.findOneBy({ id: region.id });
       if (!existingRegion) await regionRepository.save(region);
     }
-    console.log("Régions ajoutées.");
+    console.log(getTranslation("regions_added")); // "Régions ajoutées."
   };
 
   // Seeding des coffres
@@ -173,7 +173,7 @@ const seedData = async () => {
     for (const chest of chests) {
       await chestRepository.save(chest);
     }
-    console.log("Coffres ajoutés.");
+    console.log(getTranslation("chests_added")); // "Coffres ajoutés."
   };
 
   // Seeding des localisations
@@ -201,7 +201,7 @@ const seedData = async () => {
         await locationRepository.save(newLocation);
       }
     }
-    console.log("Localisations ajoutées.");
+    console.log(getTranslation("locations_added")); // "Localisations ajoutées."
   };
 
   // Seeding des donjons
@@ -231,7 +231,7 @@ const seedData = async () => {
         await dungeonRepository.save(newDungeon);
       }
     }
-    console.log("Donjons ajoutés.");
+    console.log(getTranslation("dungeons_added")); // "Donjons ajoutés."
   };
 
   // Seeding des utilisateurs
@@ -304,7 +304,7 @@ const seedData = async () => {
         await userRepository.save(newUser);
       }
     }  
-    console.log("Utilisateurs ajoutés avec des donjons et localisations adaptés au rank.");
+    console.log(getTranslation("users_added")); // "Utilisateurs ajoutés avec des donjons et localisations adaptés au rank."
   };
   
   await clearTables();

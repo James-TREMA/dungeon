@@ -1,5 +1,11 @@
 {
-    "welcome": "Bienvenue",
-    "error": "Une erreur est survenue"
+    "connexion_query_runner": "Connexion au QueryRunner pour commencer la troncature des tables...",
+    "tables_truncated_reset": "Tables tronquées et séquences réinitialisées.",
+    "items_added": "Items ajoutés.",
+    "regions_added": "Régions ajoutées.",
+    "chests_added": "Coffres ajoutés.",
+    "locations_added": "Localisations ajoutées.",
+    "dungeons_added": "Donjons ajoutés.",
+    "users_added": "Utilisateurs ajoutés avec des donjons et localisations adaptés au rank."
 }
   
