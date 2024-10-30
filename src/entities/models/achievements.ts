@@ -4,7 +4,7 @@ import { User } from './users';
 @Entity('achievement')
 export class Achievement {
   @PrimaryGeneratedColumn()
-  id!: number; // Utilisation de "!" pour indiquer que cette propriété sera initialisée automatiquement
+  id!: number;
 
   @Column({ unique: true })
   title!: string;

@@ -1,3 +1,4 @@
+import { In } from 'typeorm';
 import { dataSource } from '../ConfigDB';
 import { Item } from '../../entities/models/items';
 import { Region } from '../../entities/models/regions';
@@ -262,9 +263,9 @@ const seedData = async () => {
         // Charger les amis en tant qu'objets User
         const friends = await userRepository.findByIds(user.friends);
   
-        // Charger les achievements en utilisant les titres
-        const achievements = await achievementRepository.findBy({
-          title: user.achievements,
+        // Charger les achievements en utilisant l'opérateur In
+        const achievements = await achievementRepository.find({
+          where: { title: In(user.achievements) },
         });
   
         // Créer le nouvel utilisateur avec les entités associées
