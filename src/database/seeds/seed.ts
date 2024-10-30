@@ -268,36 +268,32 @@ const seedData = async () => {
         // Charger les objets d'inventaire et les amis
         const inventory = await itemRepository.findByIds(user.inventory);
         const friends = await userRepository.findByIds(user.friends);
-        
+  
         // Charger les achievements
         const achievements = await achievementRepository.find({
           where: { title: In(user.achievements) },
         });
   
-        // Assigner une localisation en fonction de currentLocationId
-        let currentLocation = await locationRepository.findOneBy({ id: user.currentLocationId });
-        if (!currentLocation) {
-          // Si la localisation par défaut est inexistante, attribuer une localisation générique
-          currentLocation = await locationRepository.findOneBy({ id: 1 });
-        }
+        // Assigner une localisation par défaut si la localisation spécifiée est absente
+        let currentLocation: Location | undefined = await locationRepository.findOneBy({ id: user.currentLocationId }) || undefined;
   
         // Assigner un donjon en fonction du rank
-        const assignedDungeon = sortedDungeons.find(dungeon => dungeon.level <= user.rank) || sortedDungeons[0];
+        const assignedDungeon = sortedDungeons.reverse().find(dungeon => dungeon.level <= user.rank) || sortedDungeons[0];
   
-        // Créer le nouvel utilisateur avec les localisations et donjons assignés
+        // Créer le nouvel utilisateur avec la localisation et le donjon assignés
         const newUser = userRepository.create({
           ...user,
-          inventory,
+          inventory: inventory as any, // Évite le conflit de types avec `inventory`
           friends,
           achievements,
-          currentLocation,
+          currentLocation: currentLocation ?? undefined,  // Définit `currentLocation` comme `undefined` si elle est absente
           lastDungeon: assignedDungeon,  // Attribue le donjon en fonction du rank
         });
   
         await userRepository.save(newUser);
       }
     }  
-    console.log("Utilisateurs ajoutés avec des donjons adaptés au rank.");
+    console.log("Utilisateurs ajoutés avec des donjons et localisations adaptés au rank.");
   };
   
   await clearTables();
