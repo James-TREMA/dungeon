@@ -8,6 +8,8 @@ import { Dungeon } from '../../entities/models/dungeons';
 import { User } from '../../entities/models/users';
 import { Achievement } from '../../entities/models/achievements';
 
+import getTranslation from '../../utils/translations';
+
 const seedData = async () => {
   if (!dataSource.isInitialized) {
     await dataSource.initialize();
