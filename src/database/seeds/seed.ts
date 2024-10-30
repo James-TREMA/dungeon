@@ -3,6 +3,7 @@ import { Item } from '../../entities/models/items';
 import { Region } from '../../entities/models/regions';
 import { Chest } from '../../entities/models/chests';
 import { Location } from '../../entities/models/location';
+import { Dungeon } from '../../entities/models/dungeons';
 
 // Fonction pour insérer les items dans la base de données
 const seedItems = async () => {
@@ -138,6 +139,46 @@ const seedLocations = async () => {
   console.log("Locations seeding completed.");
 };
 
+// Fonction pour insérer les donjons dans la base de données
+const seedDungeons = async () => {
+  const locationRepository = dataSource.getRepository(Location);
+  const regionRepository = dataSource.getRepository(Region);
+  const dungeonRepository = dataSource.getRepository(Dungeon);
+
+  const dungeons = [
+    { id: 1, name: 'Cavern of Mystery', entrance: 'Hidden path behind the waterfall', level: 3, locationId: 1, regionId: 1 },
+    { id: 2, name: 'Ancient Catacombs', entrance: 'Beneath the old ruins', level: 5, locationId: 2, regionId: 1 },
+    { id: 3, name: 'Lost Crypt', entrance: 'Behind the sacred temple', level: 7, locationId: 3, regionId: 2 },
+    { id: 4, name: 'Forgotten Mines', entrance: 'Entrance through an abandoned mine shaft', level: 10, locationId: 4, regionId: 3 },
+    { id: 5, name: 'Sunken Temple', entrance: 'Through the hidden swamp trail', level: 12, locationId: 5, regionId: 4 },
+    // Ajoute d'autres donjons selon les données de l'image
+  ];
+
+  for (const dung of dungeons) {
+    const existingDungeon = await dungeonRepository.findOneBy({ id: dung.id });
+    if (!existingDungeon) {
+      // Récupérer les objets Location et Region correspondants
+      const location = await locationRepository.findOneBy({ id: dung.locationId });
+      const region = await regionRepository.findOneBy({ id: dung.regionId });
+
+      if (location && region) {
+        // Créer et sauvegarder le donjon
+        const newDungeon = dungeonRepository.create({
+          id: dung.id,
+          name: dung.name,
+          entrance: dung.entrance,
+          level: dung.level,
+          location: location,
+          region: region
+        });
+        await dungeonRepository.save(newDungeon);
+      }
+    }
+  }
+
+  console.log("Dungeons seeding completed.");
+};
+
 // Fonction principale pour exécuter le seeding en fonction de SEED_DATA
 export const runSeed = async () => {
   if (process.env.SEED_DATA === 'true') {
@@ -146,6 +187,7 @@ export const runSeed = async () => {
     await seedRegions();
     await seedChests();
     await seedLocations();
+    await seedDungeons();
     console.log("Data seeding completed.");
   }
 };
