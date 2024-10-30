@@ -110,9 +110,27 @@ const seedData = async () => {
     ];
   
     const regionRepository = dataSource.getRepository(Region);
+
     for (const region of regions) {
-      await regionRepository.save(region);
+      const existingRegion = await regionRepository.findOneBy({ id: region.id });
+      if (!existingRegion) {
+        await regionRepository.save(region);
+        console.log(`Région ajoutée : ${region.name}`);
+      } else {
+        console.log(`Région déjà existante : ${region.name}`);
+      }
     }
+  
+    // Vérification des régions après insertion
+    for (const region of regions) {
+      const foundRegion = await regionRepository.findOneBy({ id: region.id });
+      if (foundRegion) {
+        console.log(`Vérification : région ${region.name} confirmée en base de données.`);
+      } else {
+        console.error(`Erreur : région ${region.name} non trouvée après insertion.`);
+      }
+    }
+
     console.log("Regions seeding completed.");
   };
 
@@ -156,10 +174,17 @@ const seedData = async () => {
     ];
   
     for (const loc of locations) {
+      // Vérification si la région existe pour chaque location
       const region = await regionRepository.findOneBy({ id: loc.regionId });
       if (region) {
+        console.log(`Région trouvée pour location ${loc.name} : Région ID ${loc.regionId} - ${region.name}`);
+        
+        // Création et sauvegarde de la localisation avec la région associée
         const newLocation = locationRepository.create({ id: loc.id, name: loc.name, region });
         await locationRepository.save(newLocation);
+        console.log(`Location ajoutée : ${loc.name} avec région ${region.name}`);
+      } else {
+        console.error(`Erreur : Région ID ${loc.regionId} introuvable pour la location ${loc.name}`);
       }
     }
     console.log("Locations seeding completed.");
@@ -193,6 +218,9 @@ const seedData = async () => {
           region
         });
         await dungeonRepository.save(newDungeon);
+        console.log(`Dungeon ajouté : ${dung.name} avec location ID ${dung.locationId} et région ID ${dung.regionId}`);
+      } else {
+        console.error(`Échec de l'ajout de dungeon : ${dung.name}. Location ID ${dung.locationId} ou Région ID ${dung.regionId} non trouvée.`);
       }
     }
     console.log("Dungeons seeding completed.");
@@ -200,11 +228,13 @@ const seedData = async () => {
 
   // Exécution de toutes les fonctions de seeding avec suppression préalable
   await clearTables();
-  await seedItems();
-  await seedRegions();
-  await seedChests();
-  await seedLocations();
-  await seedDungeons();
+  console.log("Tables tronquées, début du seeding...");
+  
+  await seedItems();   // Insère les items
+  await seedRegions(); // Insère les régions
+  await seedChests();  // Insère les coffres
+  await seedLocations(); // Insère les localisations (dépend des régions)
+  await seedDungeons();  // Insère les donjons (dépend des localisations et des régions)
 
   console.log("Data seeding completed.");
 };
