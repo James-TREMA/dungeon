@@ -9,7 +9,9 @@ import { User } from '../../entities/models/users';
 import { Achievement } from '../../entities/models/achievements';
 
 const seedData = async () => {
-  await dataSource.initialize();
+  if (!dataSource.isInitialized) {
+    await dataSource.initialize();
+  }
 
   // Supprime et réinitialise les tables avant le seeding
   const clearTables = async () => {
