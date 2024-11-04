@@ -10,6 +10,12 @@ export class Location {
     @Column({ length: 255 })
     name!: string;
 
+    @Column({ type: 'float', nullable: true })
+    x!: number;
+
+    @Column({ type: 'float', nullable: true })
+    y!: number;
+
     @OneToMany(() => Dungeon, (dungeon) => dungeon.location) // Relation OneToMany avec Dungeon
     dungeons!: Dungeon[];
 

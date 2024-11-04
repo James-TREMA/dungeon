@@ -181,24 +181,30 @@ const seedData = async () => {
     const locationRepository = dataSource.getRepository(Location);
 
     const locations = [
-      { id: 1, name: getTranslation('ancient_ruins'), regionId: 1 },
-      { id: 2, name: getTranslation('small_cave_tomb'), regionId: 2 },
-      { id: 3, name: getTranslation('abandoned_house_cellar'), regionId: 3 },
-      { id: 4, name: getTranslation('training_chapel'), regionId: 4 },
-      { id: 5, name: getTranslation('hidell_catacombe_i_depth'), regionId: 5 },
-      { id: 6, name: getTranslation('hidell_catacombe_ii_depth'), regionId: 6 },
-      { id: 7, name: getTranslation('hunters_secret_passage'), regionId: 7 },
-      { id: 8, name: getTranslation('arks_lower_level_storage'), regionId: 8 },
-      { id: 9, name: getTranslation('arks_lower_level_treasure'), regionId: 9 },
-      { id: 10, name: getTranslation('one_way_passage'), regionId: 10 },
-    ];   
+      { id: 1, name: getTranslation('ancient_ruins'), x: 34, y: 67, regionId: 1 },
+      { id: 2, name: getTranslation('small_cave_tomb'), x: 45, y: 72, regionId: 2 },
+      { id: 3, name: getTranslation('abandoned_house_cellar'), x: 52, y: 63, regionId: 3 },
+      { id: 4, name: getTranslation('training_chapel'), x: 58, y: 45, regionId: 4 },
+      { id: 5, name: getTranslation('hidell_catacombe_i_depth'), x: 62, y: 37, regionId: 5 },
+      { id: 6, name: getTranslation('hidell_catacombe_ii_depth'), x: 70, y: 29, regionId: 6 },
+      { id: 7, name: getTranslation('hunters_secret_passage'), x: 82, y: 20, regionId: 7 },
+      { id: 8, name: getTranslation('arks_lower_level_storage'), x: 90, y: 15, regionId: 8 },
+      { id: 9, name: getTranslation('arks_lower_level_treasure'), x: 97, y: 10, regionId: 9 },
+      { id: 10, name: getTranslation('one_way_passage'), x: 105, y: 5, regionId: 10 },
+  ];     
 
-    for (const loc of locations) {
-      const region = await regionRepository.findOneBy({ id: loc.regionId });
-      if (region) {
-        const newLocation = locationRepository.create({ id: loc.id, name: loc.name, region });
-        await locationRepository.save(newLocation);
-      }
+      for (const loc of locations) {
+        const region = await regionRepository.findOneBy({ id: loc.regionId });
+        if (region) {
+            const newLocation = locationRepository.create({
+                id: loc.id,
+                name: loc.name,
+                x: loc.x,
+                y: loc.y,
+                region,
+            });
+            await locationRepository.save(newLocation);
+        }
     }
     console.log(getTranslation("locations_added")); // "Localisations ajoutées."
   };
