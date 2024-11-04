@@ -130,16 +130,16 @@ const seedData = async () => {
   // Seeding des régions
   const seedRegions = async () => {
     const regions = [
-      { id: 1, name: 'Northern Mountains', description: 'A cold and harsh region with towering mountains.' },
-      { id: 2, name: 'Abandoned House Cellar', description: 'A mysterious place filled with hidden dangers.' },
-      { id: 3, name: 'Hidell Catacombe I Depth', description: 'The depths of Hidell Catacombs, echoing with whispers.' },
-      { id: 4, name: 'Hidell Catacombe II Depth', description: 'A deeper part of the Hidell Catacombs.' },
-      { id: 5, name: 'Hunter\'s Secret Passage', description: 'An old passage used by hunters, rich in rare finds.' },
-      { id: 6, name: 'The Ark\'s Lower Level - Treasure', description: 'A treasure-filled level of the Ark, guarded by ancient magic.' },
-      { id: 7, name: 'The Ark\'s Lower Level - Storage', description: 'Storage level in The Ark with ancient artifacts.' },
-      { id: 8, name: 'Small Cave Tomb', description: 'A small tomb cave, often overlooked but rich in history.' },
-      { id: 9, name: 'Training Chapel', description: 'A chapel used for training, containing basic resources.' },
-    ];   
+      { id: 1, name: getTranslation('northern_mountains'), description: getTranslation('northern_mountains_desc') },
+      { id: 2, name: getTranslation('abandoned_house_cellar'), description: getTranslation('abandoned_house_cellar_desc') },
+      { id: 3, name: getTranslation('hidell_catacombe_i_depth'), description: getTranslation('hidell_catacombe_i_depth_desc') },
+      { id: 4, name: getTranslation('hidell_catacombe_ii_depth'), description: getTranslation('hidell_catacombe_ii_depth_desc') },
+      { id: 5, name: getTranslation('hunters_secret_passage'), description: getTranslation('hunters_secret_passage_desc') },
+      { id: 6, name: getTranslation('arks_lower_level_treasure'), description: getTranslation('arks_lower_level_treasure_desc') },
+      { id: 7, name: getTranslation('arks_lower_level_storage'), description: getTranslation('arks_lower_level_storage_desc') },
+      { id: 8, name: getTranslation('small_cave_tomb'), description: getTranslation('small_cave_tomb_desc') },
+      { id: 9, name: getTranslation('training_chapel'), description: getTranslation('training_chapel_desc') },
+    ]; 
 
     const regionRepository = dataSource.getRepository(Region);
     for (const region of regions) {
@@ -152,20 +152,20 @@ const seedData = async () => {
   // Seeding des coffres
   const seedChests = async () => {
     const chests = [
-      { id: 1, name: 'Gold Chest', location: 'Abandoned House Cellar Lv.4' },
-      { id: 2, name: 'Silver Chest', location: 'Hidell Catacombe I Depth Lv.10' },
-      { id: 3, name: 'Mysterious Chest', location: 'The Ark\'s Lower Level - Treasure Lv.28' },
-      { id: 4, name: 'Locked Chest', location: 'Hunter\'s Secret Passage Lv.15' },
-      { id: 5, name: 'Common Chest', location: 'Training Chapel Lv.3' },
-      { id: 6, name: 'Locked Chest (4)', location: 'Hidell Catacombe II Inner Part Depth Lv.20' },
-      { id: 7, name: 'Crystal Chest', location: 'Hidell Catacombe II Depth Lv.16' },
-      { id: 8, name: 'Final Chest', location: 'The Ark\'s Lower Level - Final Chest Lv.30' },
-      { id: 9, name: 'Locked Chest (7)', location: 'Small Cave Tomb Lv.10' },
-      { id: 10, name: 'Locked Chest (8)', location: 'Abandoned House Cellar Lv.14' },
-      { id: 11, name: 'Locked Chest (9)', location: 'The Ark Lv.18' },
-      { id: 12, name: 'Mysteries Thief\'s Mask', location: 'Final Chests' },
-      { id: 13, name: 'Unregistered Mysterious Metal', location: 'Final Chests' },
-      { id: 14, name: 'Ornament Ammo', location: 'Final Chests' }
+      { id: 1, name: getTranslation('gold_chest'), location: getTranslation('abandoned_house_cellar_lv4') },
+      { id: 2, name: getTranslation('silver_chest'), location: getTranslation('hidell_catacombe_i_depth_lv10') },
+      { id: 3, name: getTranslation('mysterious_chest'), location: getTranslation('arks_lower_level_treasure_lv28') },
+      { id: 4, name: getTranslation('locked_chest'), location: getTranslation('hunters_secret_passage_lv15') },
+      { id: 5, name: getTranslation('common_chest'), location: getTranslation('training_chapel_lv3') },
+      { id: 6, name: getTranslation('locked_chest_4'), location: getTranslation('hidell_catacombe_ii_inner_part_depth_lv20') },
+      { id: 7, name: getTranslation('crystal_chest'), location: getTranslation('hidell_catacombe_ii_depth_lv16') },
+      { id: 8, name: getTranslation('final_chest'), location: getTranslation('arks_lower_level_final_chest_lv30') },
+      { id: 9, name: getTranslation('locked_chest_7'), location: getTranslation('small_cave_tomb_lv10') },
+      { id: 10, name: getTranslation('locked_chest_8'), location: getTranslation('abandoned_house_cellar_lv14') },
+      { id: 11, name: getTranslation('locked_chest_9'), location: getTranslation('the_ark_lv18') },
+      { id: 12, name: getTranslation('mysteries_thiefs_mask'), location: getTranslation('final_chests') },
+      { id: 13, name: getTranslation('unregistered_mysterious_metal'), location: getTranslation('final_chests') },
+      { id: 14, name: getTranslation('ornament_ammo'), location: getTranslation('final_chests') }
     ];    
 
     const chestRepository = dataSource.getRepository(Chest);
@@ -181,17 +181,17 @@ const seedData = async () => {
     const locationRepository = dataSource.getRepository(Location);
 
     const locations = [
-      { id: 1, name: 'Ancient Ruins', regionId: 1 },
-      { id: 2, name: 'Small Cave Tomb', regionId: 2 },
-      { id: 3, name: 'Abandoned House Cellar', regionId: 3 },
-      { id: 4, name: 'Training Chapel', regionId: 4 },
-      { id: 5, name: 'Hidell Catacombe I Depth', regionId: 5 },
-      { id: 6, name: 'Hidell Catacombe II Depth', regionId: 6 },
-      { id: 7, name: 'Hunter\'s Secret Passage', regionId: 7 },
-      { id: 8, name: 'The Ark Lower Level - Storage', regionId: 8 },
-      { id: 9, name: 'The Ark Lower Level - Treasure', regionId: 9 },
-      { id: 10, name: 'One Way Passage', regionId: 10 },
-    ];    
+      { id: 1, name: getTranslation('ancient_ruins'), regionId: 1 },
+      { id: 2, name: getTranslation('small_cave_tomb'), regionId: 2 },
+      { id: 3, name: getTranslation('abandoned_house_cellar'), regionId: 3 },
+      { id: 4, name: getTranslation('training_chapel'), regionId: 4 },
+      { id: 5, name: getTranslation('hidell_catacombe_i_depth'), regionId: 5 },
+      { id: 6, name: getTranslation('hidell_catacombe_ii_depth'), regionId: 6 },
+      { id: 7, name: getTranslation('hunters_secret_passage'), regionId: 7 },
+      { id: 8, name: getTranslation('arks_lower_level_storage'), regionId: 8 },
+      { id: 9, name: getTranslation('arks_lower_level_treasure'), regionId: 9 },
+      { id: 10, name: getTranslation('one_way_passage'), regionId: 10 },
+    ];   
 
     for (const loc of locations) {
       const region = await regionRepository.findOneBy({ id: loc.regionId });
@@ -210,17 +210,17 @@ const seedData = async () => {
     const dungeonRepository = dataSource.getRepository(Dungeon);
 
     const dungeons = [
-      { id: 1, name: 'Cavern of Mystery', entrance: 'Hidden path behind the waterfall', level: 3, locationId: 1, regionId: 1 },
-      { id: 2, name: 'Ancient Catacombs', entrance: 'Beneath the old ruins', level: 5, locationId: 2, regionId: 1 },
-      { id: 3, name: 'Lost Crypt', entrance: 'Behind the sacred temple', level: 7, locationId: 3, regionId: 2 },
-      { id: 4, name: 'Forgotten Mines', entrance: 'Entrance through an abandoned mine shaft', level: 10, locationId: 4, regionId: 3 },
-      { id: 5, name: 'Sunken Temple', entrance: 'Through the hidden swamp trail', level: 12, locationId: 5, regionId: 4 },
-      { id: 6, name: 'Ruined Sanctuary', entrance: 'Hidden door under the cliff', level: 15, locationId: 6, regionId: 5 },
-      { id: 7, name: 'Haunted Library', entrance: 'Broken archway in the woods', level: 18, locationId: 7, regionId: 6 },
-      { id: 8, name: 'Necromancer\'s Lair', entrance: 'Secret staircase in old chapel', level: 20, locationId: 8, regionId: 7 },
-      { id: 9, name: 'Infernal Pit', entrance: 'Cave behind the volcano', level: 22, locationId: 9, regionId: 8 },
-      { id: 10, name: 'Dragon\'s Den', entrance: 'Pathway through thorny bushes', level: 25, locationId: 10, regionId: 9 },
-    ];    
+      { id: 1, name: getTranslation('cavern_of_mystery'), entrance: getTranslation('hidden_path_behind_waterfall'), level: 3, locationId: 1, regionId: 1 },
+      { id: 2, name: getTranslation('ancient_catacombs'), entrance: getTranslation('beneath_old_ruins'), level: 5, locationId: 2, regionId: 1 },
+      { id: 3, name: getTranslation('lost_crypt'), entrance: getTranslation('behind_sacred_temple'), level: 7, locationId: 3, regionId: 2 },
+      { id: 4, name: getTranslation('forgotten_mines'), entrance: getTranslation('abandoned_mine_shaft'), level: 10, locationId: 4, regionId: 3 },
+      { id: 5, name: getTranslation('sunken_temple'), entrance: getTranslation('hidden_swamp_trail'), level: 12, locationId: 5, regionId: 4 },
+      { id: 6, name: getTranslation('ruined_sanctuary'), entrance: getTranslation('hidden_door_under_cliff'), level: 15, locationId: 6, regionId: 5 },
+      { id: 7, name: getTranslation('haunted_library'), entrance: getTranslation('broken_archway_in_woods'), level: 18, locationId: 7, regionId: 6 },
+      { id: 8, name: getTranslation('necromancers_lair'), entrance: getTranslation('secret_staircase_in_old_chapel'), level: 20, locationId: 8, regionId: 7 },
+      { id: 9, name: getTranslation('infernal_pit'), entrance: getTranslation('cave_behind_volcano'), level: 22, locationId: 9, regionId: 8 },
+      { id: 10, name: getTranslation('dragons_den'), entrance: getTranslation('pathway_through_thorny_bushes'), level: 25, locationId: 10, regionId: 9 },
+    ];  
 
     for (const dung of dungeons) {
       const location = await locationRepository.findOneBy({ id: dung.locationId });
