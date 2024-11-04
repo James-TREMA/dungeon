@@ -206,7 +206,7 @@ const seedData = async () => {
             await locationRepository.save(newLocation);
         }
     }
-    console.log(getTranslation("locations_added")); // "Localisations ajoutées."
+    console.log(getTranslation("locations_added"));
   };
 
   // Seeding des donjons
