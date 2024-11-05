@@ -1,14 +1,11 @@
 <div class="ranking-container">
-    <h2>Classement des Aventuriers</h2>
+    <h2>Classement des joueurs</h2>
     <table class="ranking-table">
       <thead>
         <tr>
           <th>Position</th>
           <th>Nom d'utilisateur</th>
-          <th>Rang</th>
-          <th>Or</th>
-          <th>Santé</th>
-          <th>Énergie</th>
+          <th>Niveaux</th>
         </tr>
       </thead>
       <tbody>
@@ -16,9 +13,6 @@
           <td>{{ i + 1 }}</td>
           <td>{{ user.username }}</td>
           <td>{{ user.rank }}</td>
-          <td>{{ user.gold }}</td>
-          <td>{{ user.health }}</td>
-          <td>{{ user.energy }}</td>
         </tr>
       </tbody>
     </table>

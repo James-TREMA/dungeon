@@ -7,13 +7,13 @@ import 'dotenv/config';
 import cors from 'cors';
 
 const app = express();
+
+app.use(cors({
+    origin: 'http://localhost:4200'
+}));
+
 app.use(express.json());
 app.use('/api', router);
-
-// Configuration CORS pour autoriser les requêtes depuis localhost:4200
-app.use(cors({
-  origin: 'http://localhost:4200'
-}));
 
 dataSource.initialize()
     .then(() => {
