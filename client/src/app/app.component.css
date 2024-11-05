@@ -1,48 +1,76 @@
-/* Global styles for header */
+/* Style dynamique et moderne pour le header */
 header {
-    background: linear-gradient(90deg, #ff7e5f, #feb47b); /* Gradient */
-    padding: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  nav {
+    background: #1c1e24;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    border-bottom: 1px solid #3a3d46;
+}
+
+nav {
     display: flex;
     justify-content: center;
-    gap: 2rem;
-  }
-  
-  .nav-link {
-    color: white;
+    gap: 2.5rem;
+}
+
+.nav-link {
+    color: #e0e0e0;
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: 600;
     text-decoration: none;
     position: relative;
     padding: 0.5rem 1rem;
+    font-size: 1rem;
     transition: color 0.3s ease;
-  }
-  
-  .nav-link::after {
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+}
+
+/* Animation d'effet de survol : arrière-plan défilant */
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, #0099ff, transparent 70%);
+    transition: transform 0.5s ease;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.6;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.nav-link:hover::before {
+    transform: translate(-50%, -50%) scale(1); /* Effet de diffusion circulaire */
+}
+
+/* Animation de soulignement dynamique */
+.nav-link::after {
     content: '';
     position: absolute;
     left: 0;
+    right: 0;
     bottom: 0;
-    width: 100%;
-    height: 3px;
-    background-color: white;
+    height: 2px;
+    background-color: #0099ff;
     transform: scaleX(0);
-    transition: transform 0.3s ease;
-  }
-  
-  .nav-link:hover {
-    color: #ffdfba; /* Hover color */
-  }
-  
-  .nav-link:hover::after {
-    transform: scaleX(1); /* Underline animation on hover */
-  }
-  
-  main {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: right;
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1); /* Effet de soulignement fluide */
+    transform-origin: left;
+}
+
+main {
     padding: 2rem;
     font-family: 'Inter', sans-serif;
-  }
-  
+    background-color: #282c34;
+    color: #e0e0e0;
+}
