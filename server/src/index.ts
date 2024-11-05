@@ -4,10 +4,16 @@ import { runSeed } from './database/seeds/seed';
 import { router } from './routes';
 import express from 'express';
 import 'dotenv/config';
+import cors from 'cors';
 
 const app = express();
 app.use(express.json());
 app.use('/api', router);
+
+// Configuration CORS pour autoriser les requêtes depuis localhost:4200
+app.use(cors({
+  origin: 'http://localhost:4200'
+}));
 
 dataSource.initialize()
     .then(() => {
