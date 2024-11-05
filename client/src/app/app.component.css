@@ -1,0 +1,48 @@
+/* Global styles for header */
+header {
+    background: linear-gradient(90deg, #ff7e5f, #feb47b); /* Gradient */
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .nav-link {
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    position: relative;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #ffdfba; /* Hover color */
+  }
+  
+  .nav-link:hover::after {
+    transform: scaleX(1); /* Underline animation on hover */
+  }
+  
+  main {
+    padding: 2rem;
+    font-family: 'Inter', sans-serif;
+  }
+  

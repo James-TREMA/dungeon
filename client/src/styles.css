@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+/* Fade-in effect for each page */
+main {
+    opacity: 0;
+    animation: fadeIn 0.6s forwards;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+  
