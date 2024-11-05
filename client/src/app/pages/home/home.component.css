@@ -1,3 +1,4 @@
+/* Container principal pour la page d'accueil */
 .home-page-container {
     max-width: 800px;
     margin: auto;
@@ -6,6 +7,7 @@
     font-size: 1rem;
   }
   
+  /* Styles pour la section d'introduction */
   .home-intro h1 {
     font-size: 2.5em;
     color: #333;
@@ -13,19 +15,22 @@
   
   .home-intro p {
     font-size: 1.2em;
-    color: #555;
+    color: #444;
   }
   
+  /* Sections principales */
   .home-features, .home-benefits, .home-guide {
     margin-top: 20px;
   }
   
+  /* Titres de sections */
   .home-features h2, .home-benefits h2, .home-guide h2 {
     font-size: 2em;
-    color: #444;
+    color: #222;
     margin-bottom: 10px;
   }
   
+  /* Éléments interactifs */
   .home-feature, .home-benefits ul li {
     margin-top: 10px;
     padding: 10px 0;
@@ -34,14 +39,10 @@
   
   .home-feature h3 {
     font-size: 1.5em;
-    color: #666;
+    color: #555;
   }
   
-  .home-feature:focus, .home-feature:hover {
-    outline: 2px solid #0056b3;
-    background-color: #f0f8ff;
-  }
-  
+  /* Style de liste pour les avantages */
   .home-benefits ul {
     list-style: disc;
     padding-left: 20px;
@@ -51,8 +52,9 @@
     margin: 5px 0;
   }
   
+  /* Liens dans la section guide */
   .home-guide a {
-    color: #0056b3;
+    color: #007acc;
     text-decoration: none;
   }
   
@@ -60,10 +62,17 @@
     text-decoration: underline;
   }
   
+  /* Style pour les boutons */
   .home-guide button {
     cursor: pointer;
     border: none;
     padding: 10px 20px;
     font-size: 1em;
+    background-color: #007acc;
+    color: white;
+  }
+  
+  .home-guide button:hover, .home-guide button:focus {
+    background-color: #005f99;
   }
   
