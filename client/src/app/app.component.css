@@ -4,6 +4,7 @@ header {
     padding: 1rem 2rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     border-bottom: 1px solid #3a3d46;
+    margin-bottom: 20px;
 }
 
 nav {

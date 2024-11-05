@@ -2,77 +2,107 @@
 .home-page-container {
     max-width: 800px;
     margin: auto;
-    padding: 20px;
+    padding: 30px;
     line-height: 1.6;
     font-size: 1rem;
-  }
-  
-  /* Styles pour la section d'introduction */
-  .home-intro h1 {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles pour la section d'introduction */
+.home-intro h1 {
     font-size: 2.5em;
-    color: #333;
-  }
-  
-  .home-intro p {
+    color: #222;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.home-intro p {
     font-size: 1.2em;
     color: #444;
-  }
-  
-  /* Sections principales */
-  .home-features, .home-benefits, .home-guide {
-    margin-top: 20px;
-  }
-  
-  /* Titres de sections */
-  .home-features h2, .home-benefits h2, .home-guide h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Sections principales */
+.home-features, .home-benefits, .home-guide {
+    margin-top: 30px;
+}
+
+/* Titres de sections */
+.home-features h2, .home-benefits h2, .home-guide h2 {
     font-size: 2em;
-    color: #222;
-    margin-bottom: 10px;
-  }
-  
-  /* Éléments interactifs */
-  .home-feature, .home-benefits ul li {
+    color: #333;
+    border-bottom: 2px solid #007acc;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+/* Éléments interactifs */
+.home-feature, .home-benefits ul li {
     margin-top: 10px;
-    padding: 10px 0;
+    padding: 15px;
     font-size: 1.1em;
-  }
-  
-  .home-feature h3 {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.home-feature:hover, .home-feature:focus {
+    background-color: #e0f7ff;
+    transform: translateY(-3px);
+}
+
+.home-feature h3 {
     font-size: 1.5em;
-    color: #555;
-  }
-  
-  /* Style de liste pour les avantages */
-  .home-benefits ul {
+    color: #333;
+}
+
+/* Style de liste pour les avantages */
+.home-benefits ul {
     list-style: disc;
     padding-left: 20px;
-  }
-  
-  .home-benefits ul li {
-    margin: 5px 0;
-  }
-  
-  /* Liens dans la section guide */
-  .home-guide a {
+}
+
+.home-benefits ul li {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.home-benefits ul li:hover, .home-benefits ul li:focus {
+    background-color: #e0f7ff;
+    transform: translateY(-3px);
+}
+
+/* Liens dans la section guide */
+.home-guide a {
     color: #007acc;
     text-decoration: none;
-  }
-  
-  .home-guide a:hover, .home-guide a:focus {
+}
+
+.home-guide a:hover, .home-guide a:focus {
     text-decoration: underline;
-  }
-  
-  /* Style pour les boutons */
-  .home-guide button {
+}
+
+/* Style pour les boutons */
+.home-guide button {
     cursor: pointer;
     border: none;
     padding: 10px 20px;
     font-size: 1em;
     background-color: #007acc;
     color: white;
-  }
-  
-  .home-guide button:hover, .home-guide button:focus {
+    border-radius: 5px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.home-guide button:hover, .home-guide button:focus {
     background-color: #005f99;
-  }
-  
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
