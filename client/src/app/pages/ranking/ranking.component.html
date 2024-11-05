@@ -1,1 +1,26 @@
-<p>ranking works!</p>
+<div class="ranking-container">
+    <h2>Classement des Aventuriers</h2>
+    <table class="ranking-table">
+      <thead>
+        <tr>
+          <th>Position</th>
+          <th>Nom d'utilisateur</th>
+          <th>Rang</th>
+          <th>Or</th>
+          <th>Santé</th>
+          <th>Énergie</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.rank }}</td>
+          <td>{{ user.gold }}</td>
+          <td>{{ user.health }}</td>
+          <td>{{ user.energy }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

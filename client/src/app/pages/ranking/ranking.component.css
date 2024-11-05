@@ -1,0 +1,29 @@
+.ranking-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ranking-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .ranking-table th, .ranking-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .ranking-table th {
+    background-color: #007acc;
+    color: white;
+  }
+  
+  .ranking-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
