@@ -1,54 +1,90 @@
-/* Appliquer une image de fond à toute la page */
-body, html {
+/* Appliquer un style global à la page et au conteneur */
+html, body {
     margin: 0;
     padding: 0;
+    width: 100%;
     height: 100%;
-}
-
-.home-page-container {
-    width: 100%; /* Prendre toute la largeur */
-    height: 100vh; /* Prendre toute la hauteur de la fenêtre */
-    padding: 30px;
-    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  
+  .home-page-container {
+    min-height: 100vh; /* Couverture de la page en hauteur */
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    padding: 20px;
     background-image: url('../../../../assets/img/photo1.jpg'); /* Remplacez par le chemin de votre image */
     background-size: cover;
     background-position: center;
-    color: #ffffff; /* Ajuster la couleur du texte pour une meilleure visibilité */
-}
-
-/* Styles pour la section d'introduction */
-.home-intro h1 {
-    font-size: 2.5em;
-    text-align: center;
-    margin-bottom: 10px;
+    background-attachment: fixed; /* Garde l'image fixe lors du scroll */
     color: #ffffff;
-}
-
-.home-intro p {
-    font-size: 1.2em;
+  }
+  
+  /* Style pour la section d'introduction */
+  .home-intro {
     text-align: center;
-    margin-bottom: 20px;
-    color: #f0f0f0;
-}
-
-/* Sections principales */
-.home-features, .home-benefits, .home-guide {
-    margin-top: 30px;
-    background-color: rgba(0, 0, 0, 0.6); /* Arrière-plan semi-transparent pour lisibilité */
+    background-color: rgba(0, 0, 0, 0.5); /* Contexte semi-transparent */
     padding: 20px;
     border-radius: 8px;
-    width: 90%;
+    margin-bottom: 20px;
     max-width: 800px;
-}
-
-/* Titres de sections */
-.home-features h2, .home-benefits h2, .home-guide h2 {
-    font-size: 2em;
-    border-bottom: 2px solid #ffffff;
-    padding-bottom: 5px;
-    margin-bottom: 15px;
-    color: #ffffff;
-}
+    width: 100%;
+  }
+  
+  .home-intro h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+  }
+  
+  .home-intro p {
+    font-size: 1.2em;
+  }
+  
+  /* Section Fonctionnalités */
+  .home-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-width: 1000px;
+    width: 100%;
+  }
+  
+  .feature {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 8px;
+    width: 45%;
+    box-sizing: border-box;
+  }
+  
+  .feature h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .feature p {
+    font-size: 1em;
+  }
+  
+  /* Section Pourquoi Rejoindre */
+  .home-benefits {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    width: 100%;
+    margin-top: 30px;
+  }
+  
+  .home-benefits ul {
+    list-style: disc;
+    padding-left: 20px;
+  }
+  
+  .home-benefits ul li {
+    margin: 10px 0;
+    font-size: 1.1em;
+  }
+  
