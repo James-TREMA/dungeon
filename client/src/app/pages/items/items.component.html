@@ -1,1 +1,22 @@
-<p>items works!</p>
+<div class="items-container">
+    <h2>Liste des Items</h2>
+    <table class="items-table">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Type</th>
+          <th>Rareté</th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>{{ item.name }}</td>
+          <td>{{ item.type }}</td>
+          <td>{{ item.rarity }}</td>
+          <td>{{ item.source }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

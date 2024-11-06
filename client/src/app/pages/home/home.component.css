@@ -1,108 +1,54 @@
-/* Container principal pour la page d'accueil */
+/* Appliquer une image de fond à toute la page */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
 .home-page-container {
-    max-width: 800px;
-    margin: auto;
+    width: 100%; /* Prendre toute la largeur */
+    height: 100vh; /* Prendre toute la hauteur de la fenêtre */
     padding: 30px;
-    line-height: 1.6;
-    font-size: 1rem;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('../../../../assets/img/photo1.jpg'); /* Remplacez par le chemin de votre image */
+    background-size: cover;
+    background-position: center;
+    color: #ffffff; /* Ajuster la couleur du texte pour une meilleure visibilité */
 }
 
 /* Styles pour la section d'introduction */
 .home-intro h1 {
     font-size: 2.5em;
-    color: #222;
     text-align: center;
     margin-bottom: 10px;
+    color: #ffffff;
 }
 
 .home-intro p {
     font-size: 1.2em;
-    color: #444;
     text-align: center;
     margin-bottom: 20px;
+    color: #f0f0f0;
 }
 
 /* Sections principales */
 .home-features, .home-benefits, .home-guide {
     margin-top: 30px;
+    background-color: rgba(0, 0, 0, 0.6); /* Arrière-plan semi-transparent pour lisibilité */
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
 }
 
 /* Titres de sections */
 .home-features h2, .home-benefits h2, .home-guide h2 {
     font-size: 2em;
-    color: #333;
-    border-bottom: 2px solid #007acc;
+    border-bottom: 2px solid #ffffff;
     padding-bottom: 5px;
     margin-bottom: 15px;
-}
-
-/* Éléments interactifs */
-.home-feature, .home-benefits ul li {
-    margin-top: 10px;
-    padding: 15px;
-    font-size: 1.1em;
-    background-color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.home-feature:hover, .home-feature:focus {
-    background-color: #e0f7ff;
-    transform: translateY(-3px);
-}
-
-.home-feature h3 {
-    font-size: 1.5em;
-    color: #333;
-}
-
-/* Style de liste pour les avantages */
-.home-benefits ul {
-    list-style: disc;
-    padding-left: 20px;
-}
-
-.home-benefits ul li {
-    margin: 10px 0;
-    padding: 10px;
-    background-color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.home-benefits ul li:hover, .home-benefits ul li:focus {
-    background-color: #e0f7ff;
-    transform: translateY(-3px);
-}
-
-/* Liens dans la section guide */
-.home-guide a {
-    color: #007acc;
-    text-decoration: none;
-}
-
-.home-guide a:hover, .home-guide a:focus {
-    text-decoration: underline;
-}
-
-/* Style pour les boutons */
-.home-guide button {
-    cursor: pointer;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1em;
-    background-color: #007acc;
-    color: white;
-    border-radius: 5px;
-    transition: background-color 0.3s, box-shadow 0.3s;
-}
-
-.home-guide button:hover, .home-guide button:focus {
-    background-color: #005f99;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    color: #ffffff;
 }
